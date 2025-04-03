@@ -3,6 +3,7 @@ using MvcNetCoreAzureAIVision.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+//Porque estamos usando un servicio con estado asociado a la peticion
 builder.Services.AddScoped<AzureOcrService>();
 builder.Services.AddControllersWithViews();
 

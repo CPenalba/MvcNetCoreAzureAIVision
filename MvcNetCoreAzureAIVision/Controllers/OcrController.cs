@@ -36,6 +36,7 @@ namespace MvcNetCoreAzureAIVision.Controllers
 
             try
             {
+                //Permite mostrar la imagen directamente en la vista 
                 using (var memoryStream = new MemoryStream())
                 {
                     await imageFile.CopyToAsync(memoryStream);
@@ -43,10 +44,11 @@ namespace MvcNetCoreAzureAIVision.Controllers
                     ViewBag.ImageBase64 = Convert.ToBase64String(imageBytes);
                 }
 
+                //Obtiene un stream de lectura del archivo
                 using (var stream = imageFile.OpenReadStream())
                 {
                     var extractedText = await _ocrService.ExtractTextFromImage(stream);
-                    ViewBag.ExtractedText = extractedText;
+                    ViewBag.ExtractedText = extractedText; //Almacena el resultado 
                     ViewBag.FileName = imageFile.FileName;
                     ViewBag.IsSuccess = true;
                 }
